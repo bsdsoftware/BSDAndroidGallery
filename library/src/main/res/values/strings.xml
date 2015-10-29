@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Library</string>
-
+    <string name="message_no_activity">No application found to view files with the extension .%s</string>
 </resources>

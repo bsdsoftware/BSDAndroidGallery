@@ -1,10 +1,8 @@
 package it.bsdsoftware.library;
 
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -12,17 +10,15 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+import it.bsdsoftware.imagelibrary.R;
 
 /**
  * Created by Simone on 29/10/15.
@@ -123,7 +119,7 @@ public class BSDUtility {
             try {
                 context.startActivity(intent);
             } catch (ActivityNotFoundException e) {
-                Toast.makeText(context, "Nessuna applicazione installata per visualizzare file con estensione ." + image.getExtension(), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, String.format(context.getString(R.string.message_no_activity), image.getExtension()), Toast.LENGTH_LONG).show();
             }
         }
     }

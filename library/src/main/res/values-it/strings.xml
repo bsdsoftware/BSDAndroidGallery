@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="message_no_activity">Nessuna applicazione installata per visualizzare file con estensione .%s</string>
+</resources>

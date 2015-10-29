@@ -19,6 +19,8 @@ import it.bsdsoftware.imagelibrary.R;
  */
 public class BSDImageGridDialogFragment extends BaseDialogFragment {
 
+    private int numColumns = 3;
+    private GridView gridView;
 
     public BSDImageGridDialogFragment() {
         // Required empty public constructor
@@ -31,8 +33,8 @@ public class BSDImageGridDialogFragment extends BaseDialogFragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_bsdimage_grid_dialog, container, false);
 
-        GridView gridView = (GridView) rootView.findViewById(R.id.gridview_image);
-
+        gridView = (GridView) rootView.findViewById(R.id.gridview_image);
+        gridView.setNumColumns(numColumns);
         final BSDGridAdpater adapter = new BSDGridAdpater(getActivity());
         for(BSDImage img : gallery){
             adapter.add(img);
@@ -56,4 +58,9 @@ public class BSDImageGridDialogFragment extends BaseDialogFragment {
         return dialog;
     }
 
+    public void setNumColumns(int numColumns) {
+        this.numColumns = numColumns;
+        if(gridView!=null)
+            gridView.setNumColumns(numColumns);
+    }
 }
