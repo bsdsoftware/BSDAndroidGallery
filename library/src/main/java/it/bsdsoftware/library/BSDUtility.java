@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Base64;
@@ -80,10 +81,12 @@ public class BSDUtility {
         }
     }
 
-    public static void handleClickItem(FragmentActivity context, BSDImage image, List<BSDImage> gallery){
+    public static void handleClickItem(FragmentActivity context, BSDImage image, List<BSDImage> gallery, int position){
         if(isImage(image.getExtension())){
-            Toast.makeText(context, image.getImageTitle(), Toast.LENGTH_LONG).show();
             BSDImageSwitcherDialogFragment dialog = new BSDImageSwitcherDialogFragment();
+            Bundle args = new Bundle();
+            args.putInt(context.getString(R.string.index_extra), position);
+            dialog.setArguments(args);
             dialog.setGallery(gallery);
             dialog.show(context.getSupportFragmentManager(), "tag_switcher");
         }else {

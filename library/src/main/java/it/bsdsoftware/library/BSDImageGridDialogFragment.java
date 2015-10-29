@@ -44,7 +44,7 @@ public class BSDImageGridDialogFragment extends BaseDialogFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 BSDImage image = adapter.getItem(position);
-                BSDUtility.handleClickItem(getActivity(), image, gallery);
+                BSDUtility.handleClickItem(getActivity(), image, gallery, position);
             }
         });
 

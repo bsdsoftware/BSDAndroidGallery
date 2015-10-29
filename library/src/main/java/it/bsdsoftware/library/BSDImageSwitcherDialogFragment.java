@@ -28,6 +28,10 @@ public class BSDImageSwitcherDialogFragment extends BaseDialogFragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_bsdimage_switcher_dialog, container, false);
 
+        Bundle args = getArguments();
+
+        indexArray = args.getInt(getString(R.string.index_extra), 0);
+
         ImageButton next = (ImageButton) rootView.findViewById(R.id.btn_next_image);
         ImageButton prev = (ImageButton) rootView.findViewById(R.id.btn_prev_image);
         if(!lightTheme){
@@ -82,7 +86,7 @@ public class BSDImageSwitcherDialogFragment extends BaseDialogFragment {
             imageSwitcher.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    BSDUtility.handleClickItem(getActivity(), image, gallery);
+                    BSDUtility.handleClickItem(getActivity(), image, gallery, 0);
                 }
             });
         }else {
