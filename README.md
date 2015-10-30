@@ -42,5 +42,5 @@ repositories {
 ```
 e nel gradle file la dipendenza:
 ```groovy
-compile 'it.bsdsoftware:bsd-android-gallery:1.2'
+compile 'it.bsdsoftware:bsd-android-gallery:1.3'
 ```
