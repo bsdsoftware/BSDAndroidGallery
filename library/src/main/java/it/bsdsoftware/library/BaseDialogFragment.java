@@ -16,13 +16,14 @@ public class BaseDialogFragment extends DialogFragment{
     private int width = 600, height = 600;
     protected boolean lightTheme = true;
     protected List<BSDImage> gallery = new ArrayList<>();
+    private boolean cancel = true;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Dialog dialog = super.onCreateDialog(savedInstanceState);
         if(!showTitle)
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-
+        
         return dialog;
     }
 
@@ -63,6 +64,27 @@ public class BaseDialogFragment extends DialogFragment{
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        BSDUtility.deleteContentWorkingDirectory();
+        if(cancel)
+            BSDUtility.deleteContentWorkingDirectory();
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public boolean isLightTheme() {
+        return lightTheme;
+    }
+
+    public List<BSDImage> getGallery() {
+        return gallery;
+    }
+
+    protected void setCancel(boolean cancel) {
+        this.cancel = cancel;
     }
 }

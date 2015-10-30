@@ -86,7 +86,7 @@ public class BSDImageSwitcherDialogFragment extends BaseDialogFragment {
             imageSwitcher.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    BSDUtility.handleClickItem(getActivity(), image, gallery, 0);
+                    BSDUtility.handleClickItem(getActivity(), image, 0, null);
                 }
             });
         }else {

@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 BSDImageGridDialogFragment dialog = new BSDImageGridDialogFragment();
                 dialog.setGallery(gallery);
+                dialog.setLightTheme(false);
                 dialog.show(getSupportFragmentManager(), "tag_grid");
             }
         });

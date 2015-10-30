@@ -79,13 +79,16 @@ public class BSDUtility {
         }
     }
 
-    public static void handleClickItem(FragmentActivity context, BSDImage image, List<BSDImage> gallery, int position){
+    public static void handleClickItem(FragmentActivity context, BSDImage image, int position, BSDImageGridDialogFragment dialogFragment){
         if(isImage(image.getExtension())){
             BSDImageSwitcherDialogFragment dialog = new BSDImageSwitcherDialogFragment();
             Bundle args = new Bundle();
             args.putInt(context.getString(R.string.index_extra), position);
             dialog.setArguments(args);
-            dialog.setGallery(gallery);
+            dialog.setGallery(dialogFragment.getGallery());
+            dialog.setLightTheme(dialogFragment.isLightTheme());
+            dialog.setCancel(false);
+            dialog.setSize(dialogFragment.getWidth(), dialogFragment.getHeight());
             dialog.show(context.getSupportFragmentManager(), "tag_switcher");
         }else {
             String path = String.format("%s/%s.%s", workingDirectory, image.getImageTitle(), image.getExtension());
