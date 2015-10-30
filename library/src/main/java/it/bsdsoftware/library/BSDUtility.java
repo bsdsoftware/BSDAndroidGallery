@@ -65,15 +65,13 @@ public class BSDUtility {
 
     public static boolean isImage(String extension){
         if(extension == null || extension.equals(""))
-            return true;
+            return false;
         extension = extension.toLowerCase();
         switch (extension){
             case "jpg":
             case "jpeg":
             case "png":
             case "gif":
-           // case "tiff":
-           // case "tif":
             case "bmp":
                 return true;
             default:
@@ -92,37 +90,39 @@ public class BSDUtility {
         }else {
             String path = String.format("%s/%s.%s", workingDirectory, image.getImageTitle(), image.getExtension());
             convertBase64IntoFile(image.getBase64File(), path);
-            Intent intent;
-            switch (image.getExtension().toLowerCase()) {
-                case "pdf":
-                    File file = new File(path);
-                    intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setDataAndType(Uri.fromFile(file), "application/pdf");
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                    break;
-                case "txt":
-                    intent = new Intent(Intent.ACTION_EDIT);
-                    Uri uri = Uri.parse("file:" + path);
-                    intent.setDataAndType(uri, "text/plain");
-                    break;
-                case "tiff":
-                case "tif":
-                    file = new File(path);
-                    intent = new Intent();
-                    intent.setAction(android.content.Intent.ACTION_VIEW);
-                    intent.setDataAndType(Uri.fromFile(file), "image/tiff");
-                    break;
-                default:
-                    file = new File(path);
-                    String mime = MimeTypeMap.getSingleton().getMimeTypeFromExtension("." + image.getExtension());
-                    intent = new Intent();
-                    intent.setAction(android.content.Intent.ACTION_VIEW);
-                    intent.setDataAndType(Uri.fromFile(file), mime);
-            }
-            try {
-                context.startActivity(intent);
-            } catch (ActivityNotFoundException e) {
-                Toast.makeText(context, String.format(context.getString(R.string.message_no_activity), image.getExtension()), Toast.LENGTH_LONG).show();
+            File file = new File(path);
+            if(file.exists()) {
+                Intent intent;
+                switch (image.getExtension().toLowerCase()) {
+                    case "pdf":
+                        intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setDataAndType(Uri.fromFile(file), "application/pdf");
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                        break;
+                    case "txt":
+                        intent = new Intent(Intent.ACTION_EDIT);
+                        Uri uri = Uri.parse("file:" + path);
+                        intent.setDataAndType(uri, "text/plain");
+                        break;
+                    case "tiff":
+                    case "tif":
+                        intent = new Intent();
+                        intent.setAction(android.content.Intent.ACTION_VIEW);
+                        intent.setDataAndType(Uri.fromFile(file), "image/tiff");
+                        break;
+                    default:
+                        String mime = MimeTypeMap.getSingleton().getMimeTypeFromExtension("." + image.getExtension());
+                        intent = new Intent();
+                        intent.setAction(android.content.Intent.ACTION_VIEW);
+                        intent.setDataAndType(Uri.fromFile(file), mime);
+                }
+                try {
+                    context.startActivity(intent);
+                } catch (ActivityNotFoundException e) {
+                    Toast.makeText(context, String.format(context.getString(R.string.message_no_activity), image.getExtension()), Toast.LENGTH_LONG).show();
+                }
+            }else {
+                Toast.makeText(context, "File Not Found!", Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -135,7 +135,7 @@ public class BSDUtility {
     }
 
     public static void deleteContentWorkingDirectory(){
-        deleteDirectoryContent(workingDirectory);
+       deleteDirectoryContent(workingDirectory);
     }
 
     private static void deleteDirectoryContent(String directoryPath){
@@ -153,5 +153,4 @@ public class BSDUtility {
             dir.delete();
         }
     }
-
 }
