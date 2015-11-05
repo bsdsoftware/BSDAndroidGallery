@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
 import it.bsdsoftware.imagelibrary.R;
@@ -20,6 +22,7 @@ public class BSDImageSwitcherDialogFragment extends BaseDialogFragment {
 
     private ImageSwitcher imageSwitcher;
     private int indexArray = 0;
+    private View title;
 
     public BSDImageSwitcherDialogFragment() { }
 
@@ -27,6 +30,10 @@ public class BSDImageSwitcherDialogFragment extends BaseDialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_bsdimage_switcher_dialog, container, false);
+        if(titleLayout!=-1){
+            FrameLayout fl = (FrameLayout) rootView.findViewById(R.id.top_container);
+            title = inflater.inflate(titleLayout, fl);
+        }
 
         Bundle args = getArguments();
 
@@ -50,7 +57,7 @@ public class BSDImageSwitcherDialogFragment extends BaseDialogFragment {
 
         if(gallery.size()>0){
             imageSwitcher.setImageDrawable(gallery.get(indexArray).getImage(getActivity()));
-            getDialog().setTitle(gallery.get(indexArray).getImageTitle());
+            setTitle(gallery.get(indexArray).getImageTitle());
             setListener(gallery.get(indexArray));
 
             next.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +68,7 @@ public class BSDImageSwitcherDialogFragment extends BaseDialogFragment {
                         indexArray = 0;
                     BSDImage img = gallery.get(indexArray);
                     imageSwitcher.setImageDrawable(img.getImage(getActivity()));
-                    getDialog().setTitle(img.getImageTitle());
+                    setTitle(img.getImageTitle());
                     setListener(img);
                 }
             });
@@ -73,7 +80,7 @@ public class BSDImageSwitcherDialogFragment extends BaseDialogFragment {
                         indexArray = gallery.size() - 1;
                     BSDImage img = gallery.get(indexArray);
                     imageSwitcher.setImageDrawable(img.getImage(getActivity()));
-                    getDialog().setTitle(img.getImageTitle());
+                    setTitle(img.getImageTitle());
                     setListener(img);
                 }
             });
@@ -97,5 +104,22 @@ public class BSDImageSwitcherDialogFragment extends BaseDialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         return super.onCreateDialog(savedInstanceState);
+    }
+
+    public void setTitle(String title){
+        if(showTitle){
+            getDialog().setTitle(title);
+        }
+        else if(titleLayout != -1){
+            TextView textView = (TextView) getDialog().findViewById(android.R.id.title);
+            if(textView!=null)
+                textView.setText(title);
+            else if(this.title!=null){
+                textView = (TextView) this.title.findViewById(android.R.id.title);
+                
+                if(textView!=null)
+                    textView.setText(title);
+            }
+        }
     }
 }

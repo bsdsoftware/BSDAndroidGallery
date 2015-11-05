@@ -21,7 +21,7 @@ import it.bsdsoftware.imagelibrary.R;
 public class BSDImageGridDialogFragment extends BaseDialogFragment {
 
     private int numColumns = 3;
-    private int layoutTop = -1;
+
     private GridView gridView;
 
 
@@ -36,9 +36,9 @@ public class BSDImageGridDialogFragment extends BaseDialogFragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_bsdimage_grid_dialog, container, false);
 
-        if(layoutTop!=-1){
+        if(titleLayout!=-1){
             FrameLayout fl = (FrameLayout) rootView.findViewById(R.id.top_container);
-            inflater.inflate(layoutTop, fl);
+            inflater.inflate(titleLayout, fl);
         }
 
         gridView = (GridView) rootView.findViewById(R.id.gridview_image);
@@ -72,7 +72,5 @@ public class BSDImageGridDialogFragment extends BaseDialogFragment {
             gridView.setNumColumns(numColumns);
     }
 
-    public void setLayoutTop(int layoutTop) {
-        this.layoutTop = layoutTop;
-    }
+
 }

@@ -88,6 +88,7 @@ public class BSDUtility {
             dialog.setGallery(dialogFragment.getGallery());
             dialog.setLightTheme(dialogFragment.isLightTheme());
             dialog.setCancel(false);
+            dialog.setTitleLayout(dialogFragment.titleLayout);
             dialog.setSize(dialogFragment.getWidth(), dialogFragment.getHeight());
             dialog.show(context.getSupportFragmentManager(), "tag_switcher");
         }else {

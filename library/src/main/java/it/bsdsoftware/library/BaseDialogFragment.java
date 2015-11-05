@@ -12,18 +12,19 @@ import java.util.List;
  */
 public class BaseDialogFragment extends DialogFragment{
 
-    private boolean showTitle = true;
+    protected boolean showTitle = true;
     private int width = 600, height = 600;
     protected boolean lightTheme = true;
     protected List<BSDImage> gallery = new ArrayList<>();
     private boolean cancel = true;
+    protected int titleLayout = -1;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Dialog dialog = super.onCreateDialog(savedInstanceState);
-        if(!showTitle)
+        if(!showTitle) {
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        
+        }
         return dialog;
     }
 
@@ -86,5 +87,10 @@ public class BaseDialogFragment extends DialogFragment{
 
     protected void setCancel(boolean cancel) {
         this.cancel = cancel;
+    }
+
+    public void setTitleLayout(int titleLayout) {
+        this.titleLayout = titleLayout;
+        this.showTitle = false;
     }
 }

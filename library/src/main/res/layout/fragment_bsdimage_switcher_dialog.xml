@@ -2,34 +2,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageSwitcher
-        android:id="@+id/imageSwitcher"
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/top_container" />
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true" >
-    </ImageSwitcher>
+        android:layout_below="@id/top_container">
+        <ImageSwitcher
+            android:id="@+id/imageSwitcher"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" >
+        </ImageSwitcher>
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/btn_next_image"
-        android:background="@null"
-        android:layout_marginRight="16dp"
-        android:layout_centerVertical="true"
-        android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
-        />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/btn_next_image"
+            android:background="@null"
+            android:layout_marginRight="16dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+            />
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_prev_image"
-        android:background="@null"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="16dp"
-        android:src="@drawable/ic_keyboard_arrow_left_black_24dp"
-        />
-
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_prev_image"
+            android:background="@null"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:src="@drawable/ic_keyboard_arrow_left_black_24dp"
+            />
+    </RelativeLayout>
 </RelativeLayout>

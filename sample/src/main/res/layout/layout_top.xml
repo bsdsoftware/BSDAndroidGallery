@@ -9,5 +9,6 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="TITLE"
-        android:id="@+id/textView" />
+        android:id="@android:id/title"
+         />
 </LinearLayout>
