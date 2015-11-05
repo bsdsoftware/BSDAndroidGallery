@@ -116,7 +116,7 @@ public class BSDImageSwitcherDialogFragment extends BaseDialogFragment {
                 textView.setText(title);
             else if(this.title!=null){
                 textView = (TextView) this.title.findViewById(android.R.id.title);
-                
+
                 if(textView!=null)
                     textView.setText(title);
             }

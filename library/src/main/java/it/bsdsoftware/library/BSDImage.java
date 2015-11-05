@@ -40,24 +40,24 @@ public class BSDImage {
                 int r;
                 if(extension.toLowerCase().equals("pdf")){
                     if(themeLight)
-                        r = R.drawable.ic_picture_as_pdf_black_48dp;
+                        r = R.drawable.ic_file_pdf;
                     else
-                        r = R.drawable.ic_picture_as_pdf_white_48dp;
-                }else if(extension.toLowerCase().equals("txt")) {
+                        r = R.drawable.ic_file_pdf;
+                }/*else if(extension.toLowerCase().equals("txt")) {
                     if(themeLight)
                         r = R.drawable.ic_txt_black_48dp;
                     else
                         r = R.drawable.ic_txt_white_48dp;
-                }else if(extension.toLowerCase().equals("tiff") || extension.toLowerCase().equals("tif")) {
+                }*/else if(extension.toLowerCase().equals("tiff") || extension.toLowerCase().equals("tif")) {
                     if(themeLight)
-                        r = R.drawable.ic_tiff_black_48dp;
+                        r = R.drawable.ic_file_tiff;
                     else
-                        r = R.drawable.ic_tiff_white_48dp;
+                        r = R.drawable.ic_file_tiff;
                 }else {
                     if(themeLight)
-                        r = R.drawable.ic_insert_drive_file_black_48dp;
+                        r = R.drawable.ic_file_gen;
                     else
-                        r = R.drawable.ic_insert_drive_file_white_48dp;
+                        r = R.drawable.ic_file_gen;
                 }
                 drw = BSDUtility.getDrawableFromRes(r, context);
             }
