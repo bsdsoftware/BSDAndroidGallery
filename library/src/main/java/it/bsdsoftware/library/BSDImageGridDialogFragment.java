@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.GridView;
 
 import it.bsdsoftware.imagelibrary.R;
@@ -20,7 +21,9 @@ import it.bsdsoftware.imagelibrary.R;
 public class BSDImageGridDialogFragment extends BaseDialogFragment {
 
     private int numColumns = 3;
+    private int layoutTop = -1;
     private GridView gridView;
+
 
     public BSDImageGridDialogFragment() {
         // Required empty public constructor
@@ -32,6 +35,11 @@ public class BSDImageGridDialogFragment extends BaseDialogFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_bsdimage_grid_dialog, container, false);
+
+        if(layoutTop!=-1){
+            FrameLayout fl = (FrameLayout) rootView.findViewById(R.id.top_container);
+            inflater.inflate(layoutTop, fl);
+        }
 
         gridView = (GridView) rootView.findViewById(R.id.gridview_image);
         gridView.setNumColumns(numColumns);
@@ -62,5 +70,9 @@ public class BSDImageGridDialogFragment extends BaseDialogFragment {
         this.numColumns = numColumns;
         if(gridView!=null)
             gridView.setNumColumns(numColumns);
+    }
+
+    public void setLayoutTop(int layoutTop) {
+        this.layoutTop = layoutTop;
     }
 }
