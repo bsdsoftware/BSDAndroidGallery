@@ -80,7 +80,7 @@ public class BSDUtility {
     }
 
     public static void handleClickItem(FragmentActivity context, BSDImage image, int position, BSDImageGridDialogFragment dialogFragment){
-        if(isImage(image.getExtension())){
+        if(isImage(image.getExtension()) || !image.isBase64()){
             BSDImageSwitcherDialogFragment dialog = new BSDImageSwitcherDialogFragment();
             Bundle args = new Bundle();
             args.putInt(context.getString(R.string.index_extra), position);

@@ -124,4 +124,8 @@ public class BSDImage {
     public boolean isClickable() {
         return isClickable;
     }
+
+    public boolean isBase64(){
+        return !(base64File == null || base64File.equals(""));
+    }
 }

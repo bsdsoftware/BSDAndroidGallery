@@ -7,13 +7,15 @@ import android.view.Window;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.bsdsoftware.imagelibrary.R;
+
 /**
  * Created by Simone on 29/10/15.
  */
 public class BaseDialogFragment extends DialogFragment{
 
     protected boolean showTitle = true;
-    private int width = 600, height = 600;
+    private int width, height;
     protected boolean lightTheme = true;
     protected List<BSDImage> gallery = new ArrayList<>();
     private boolean cancel = true;
@@ -22,6 +24,8 @@ public class BaseDialogFragment extends DialogFragment{
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Dialog dialog = super.onCreateDialog(savedInstanceState);
+        width = (int)getActivity().getResources().getDimension(R.dimen.bsd_grid_size);
+        height = (int)getActivity().getResources().getDimension(R.dimen.bsd_grid_size);
         if(!showTitle) {
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         }

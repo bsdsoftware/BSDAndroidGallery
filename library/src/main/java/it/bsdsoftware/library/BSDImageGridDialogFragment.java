@@ -1,6 +1,7 @@
 package it.bsdsoftware.library;
 
 
+import android.app.Application;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -20,7 +21,7 @@ import it.bsdsoftware.imagelibrary.R;
  */
 public class BSDImageGridDialogFragment extends BaseDialogFragment {
 
-    private int numColumns = 3;
+    private int numColumns;
 
     private GridView gridView;
 
@@ -42,6 +43,7 @@ public class BSDImageGridDialogFragment extends BaseDialogFragment {
         }
 
         gridView = (GridView) rootView.findViewById(R.id.gridview_image);
+        numColumns = getActivity().getResources().getInteger(R.integer.bsd_android_gallery_column);
         gridView.setNumColumns(numColumns);
         final BSDGridAdpater adapter = new BSDGridAdpater(getActivity());
         for(BSDImage img : gallery){

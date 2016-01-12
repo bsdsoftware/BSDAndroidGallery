@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="bsd_android_gallery_column">2</integer>
+</resources>
